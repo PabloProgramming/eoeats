@@ -13,22 +13,15 @@ import org.springframework.lang.NonNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Restaurant {
+public class Amount {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String email;
-    private String imageID;
-    private String image;
     @NonNull
-    private String name;
+    private int amount;
+    private String description;
     @NonNull
-    private String phone;
+    private double subTotalPrice;
     @NonNull
-    private String latitude;
-    @NonNull
-    private String longitude;
-
-
-
+    private int type;
 }
