@@ -7,28 +7,17 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Restaurant {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String email;
-    private String imageID;
+    private String imageId;
     private String image;
-    @NonNull
     private String name;
-    @NonNull
-    private String phone;
-    @NonNull
-    private String latitude;
-    @NonNull
-    private String longitude;
-
-
 
 }
