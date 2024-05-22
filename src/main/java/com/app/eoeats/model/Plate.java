@@ -1,13 +1,12 @@
 package com.app.eoeats.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -28,6 +27,15 @@ public class Plate {
     private boolean isAvailable;
     @NonNull
     private boolean isKitchenPrinter;
+    @ManyToOne
+    private Category category;
+    @ManyToMany
+    private List<Allergens> allergens;
+    @OneToMany(mappedBy = "plate")
+    private List<Extras> extras;
+    @OneToMany(mappedBy = "plate")
+    private List<Amount> amounts;
+
 
 
 }

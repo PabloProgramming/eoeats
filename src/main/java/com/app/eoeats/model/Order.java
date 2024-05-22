@@ -1,14 +1,13 @@
 package com.app.eoeats.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
+import java.util.List;
+@Table(name = "orderRest")
 @Entity
 @Data
 @AllArgsConstructor
@@ -25,4 +24,9 @@ public class Order {
     private int tableNumber;
     @NonNull
     private double totalPrice;
+    @OneToMany(mappedBy = "order")
+    private List<Amount> amounts;
+    @ManyToOne
+    @JoinColumn(name = "restaurantId")
+    private Restaurant restaurant;
 }
