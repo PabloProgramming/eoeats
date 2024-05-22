@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,6 +19,8 @@ private Long id;
 @NonNull
 @Column (unique = true)
 private String name;
+@ManyToMany(mappedBy = "allergens")
+private List<Plate> plates;
 
 
 }

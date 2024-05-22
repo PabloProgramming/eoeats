@@ -1,13 +1,12 @@
 package com.app.eoeats.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -21,5 +20,9 @@ public class Extras {
     private String name;
     @NonNull
     private double price;
+    @ManyToOne
+    private Plate plate;
+    @OneToMany(mappedBy = "extras")
+    private List<AmountExtra> amountExtras;
 
 }
