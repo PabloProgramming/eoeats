@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -15,7 +16,7 @@ import java.util.List;
 public class Plate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
     @NonNull
     private int type;
     @NonNull
