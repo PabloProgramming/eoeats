@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
+import java.util.UUID;
+
 @Table(name = "orderRest")
 @Entity
 @Data
@@ -15,7 +17,7 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
     @NonNull
     private String date;
     @NonNull
