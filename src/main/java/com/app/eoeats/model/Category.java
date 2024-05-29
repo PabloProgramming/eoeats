@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +23,7 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Plate> plates;
     @ManyToOne
+    @NonNull
     private Restaurant restaurant;
 
 }
