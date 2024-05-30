@@ -23,12 +23,12 @@ public class CategoryController {
 
     @PutMapping
     private ResponseEntity<CategoryDto> updateCategory(@RequestBody final CategoryDto categoryDto) {
-        return ResponseEntity.ok(categoryService.updateCategory(categoryDto));
+        return ResponseEntity.ok(categoryService.saveCategory(categoryDto));
 
     }
 
     @DeleteMapping ("/{categoryId}")
-    private ResponseEntity<CategoryDto> deleteCategory(@PathVariable final UUID categoryId){
+    private ResponseEntity<String> deleteCategory(@PathVariable final String categoryId){
         return ResponseEntity.ok(categoryService.deleteCategory(categoryId));
     }
 }

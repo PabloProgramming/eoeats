@@ -22,25 +22,17 @@ public class CategoryService {
 
 
     public CategoryDto saveCategory(final CategoryDto categoryDto) {
-
         final Category category = categoryMapper.requestDtoToEntity(categoryDto);
         final Category savedCategory = categoryRepository.save(category);
         return categoryMapper.entityToDto(savedCategory);
     }
 
-    public CategoryDto updateCategory(final CategoryDto categoryDto) {
-        final Category category = categoryMapper.requestDtoToEntity(categoryDto);
-        final Category updatedCategory = categoryRepository.save(category);
-        return categoryMapper.entityToDto(updatedCategory);
-    }
-
     @SneakyThrows
-    public CategoryDto deleteCategory(UUID categoryID) {
-        final Optional<Category> categoryOptional = categoryRepository.findById(categoryID);
+    public String deleteCategory(String categoryId) {
+        final Optional<Category> categoryOptional = categoryRepository.findById(UUID.fromString(categoryId));
         if (categoryOptional.isPresent()) {
-            Category category = categoryOptional.get();
-            categoryRepository.delete(category);
-            return categoryMapper.entityToDto(category);
+            categoryRepository.deleteById(UUID.fromString(categoryId));
+            return categoryId;
 
         }
         throw new Exception();
