@@ -12,6 +12,7 @@ public class RestaurantDto {
     private final String id;
     private final String email;
     private final String image;
+    private final String imageId;
     private final String name;
     private final String phone;
     private final String latitude;

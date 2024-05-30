@@ -18,7 +18,7 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String email;
-    private String imageID;
+    private String imageId;
     private String image;
     @NonNull
     private String name;

@@ -10,17 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping ("/restaurant")
+@RequestMapping("/restaurant")
 public class RestaurantController {
 
     @Autowired
     RestaurantService restaurantService;
 
     @PutMapping
-    private ResponseEntity<RestaurantDto> updateRestaurantInfo(@RequestBody RestaurantDto restaurantDto){
-    return ResponseEntity.ok(restaurantService.updateRestaurantInfo(restaurantDto));
-
-
-
+    private ResponseEntity<RestaurantDto> updateRestaurantInfo(@RequestBody RestaurantDto restaurantDto) {
+        return ResponseEntity.ok(restaurantService.updateRestaurantInfo(restaurantDto));
     }
 }
