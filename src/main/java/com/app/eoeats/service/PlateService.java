@@ -2,7 +2,7 @@ package com.app.eoeats.service;
 
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.PlateDto;
-import com.app.eoeats.model.dto.ResponsePlateDto;
+import com.app.eoeats.model.dto.PlateResponseDto;
 import com.app.eoeats.repository.PlateRepository;
 import com.app.eoeats.service.mapper.PlateMapper;
 import lombok.SneakyThrows;
@@ -21,7 +21,7 @@ public class PlateService {
     @Autowired
     PlateMapper plateMapper;
 
-    public ResponsePlateDto savePlateByCategory(PlateDto plateDto) {
+    public PlateResponseDto savePlateByCategory(PlateDto plateDto) {
         final Plate plate = plateMapper.requestDtoToEntity(plateDto);
         final Plate savedPlate = plateRepository.save(plate);
         return plateMapper.entityToDto(savedPlate);

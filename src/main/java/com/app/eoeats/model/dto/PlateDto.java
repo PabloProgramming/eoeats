@@ -17,5 +17,7 @@ public class PlateDto {
     private final double price;
     private final String categoryId;
     private final List<String> allergens;
+    private final boolean isAvailable;
+    private final boolean isKitchenPrinter;
 
 }

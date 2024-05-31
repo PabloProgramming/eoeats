@@ -1,7 +1,7 @@
 package com.app.eoeats.controller;
 
 import com.app.eoeats.model.dto.PlateDto;
-import com.app.eoeats.model.dto.ResponsePlateDto;
+import com.app.eoeats.model.dto.PlateResponseDto;
 import com.app.eoeats.service.PlateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class PlateController {
     PlateService plateService;
 
     @PostMapping
-    private ResponseEntity<ResponsePlateDto> savePlate(@RequestBody final PlateDto plateDto){
+    private ResponseEntity<PlateResponseDto> savePlate(@RequestBody final PlateDto plateDto){
         return ResponseEntity.ok(plateService.savePlateByCategory(plateDto));
     }
 

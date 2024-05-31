@@ -15,12 +15,12 @@ public class AllergenService {
     @Autowired
     AllergenRepository allergenRepository;
 
-    public List<Allergen> findAllergensById(final List<String> strings){
-        List<UUID> uuids = new ArrayList<>();
-        for (String id: strings){
+    public List<Allergen> findAllergensById(final List<String> IdsString){
+        List<UUID> IdsUuid = new ArrayList<>();
+        for (String id: IdsString){
             UUID uuid = UUID.fromString(id);
-            uuids.add(uuid);
+            IdsUuid.add(uuid);
         }
-        return allergenRepository.findAllById(uuids);
+        return allergenRepository.findAllById(IdsUuid);
     }
 }

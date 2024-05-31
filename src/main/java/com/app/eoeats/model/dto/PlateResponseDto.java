@@ -9,14 +9,16 @@ import java.util.List;
 @Builder
 @Getter
 @RequiredArgsConstructor
-public class ResponsePlateDto {
+public class PlateResponseDto {
 
     private final String id;
     private final int type;
     private final String name;
     private final double price;
     private final String categoryId;
-    private final List<ResponseAllergenDto> allergensList;
+    private final List<AllergenResponseDto> allergensList;
+    private final boolean isAvailable;
+    private final boolean isKitchenPrinter;
 
 
 }

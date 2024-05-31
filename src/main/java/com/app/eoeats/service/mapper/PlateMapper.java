@@ -4,7 +4,7 @@ import com.app.eoeats.model.Allergen;
 import com.app.eoeats.model.Category;
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.PlateDto;
-import com.app.eoeats.model.dto.ResponsePlateDto;
+import com.app.eoeats.model.dto.PlateResponseDto;
 import com.app.eoeats.service.AllergenService;
 import com.app.eoeats.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +40,15 @@ public class PlateMapper {
         plate.setCategory(category);
         List<Allergen> allergens = allergenService.findAllergensById(plateDto.getAllergens());
         plate.setAllergens(allergens);
+        plate.setAvailable(plateDto.isAvailable());
+        plate.setKitchenPrinter(plateDto.isKitchenPrinter());
+
         return plate;
     }
 
-    public ResponsePlateDto entityToDto(final Plate plate) {
+    public PlateResponseDto entityToDto(final Plate plate) {
         List<Allergen> allergens = new ArrayList<>();
-        return ResponsePlateDto.builder()
+        return PlateResponseDto.builder()
                 .id(plate.getId().toString())
                 .type(plate.getType())
                 .name(plate.getName())
