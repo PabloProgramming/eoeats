@@ -24,7 +24,7 @@ public class CategoryMapper {
         }
         category.setImage(categoryDto.getImage());
         category.setName(categoryDto.getName());
-        final Restaurant restaurant = restaurantService.findRestaurantById(UUID.fromString(categoryDto.getRestaurantId()));
+        final Restaurant restaurant = restaurantService.findRestaurantById(categoryDto.getRestaurantId());
         category.setRestaurant(restaurant);
         return category;
     }

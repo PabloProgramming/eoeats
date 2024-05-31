@@ -1,12 +1,17 @@
 package com.app.eoeats.service.mapper;
 
+import com.app.eoeats.model.Allergen;
 import com.app.eoeats.model.Category;
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.PlateDto;
+import com.app.eoeats.model.dto.ResponsePlateDto;
+import com.app.eoeats.service.AllergenService;
 import com.app.eoeats.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,10 +21,16 @@ public class PlateMapper {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    AllergenService allergenService;
 
-    public Plate requestDtoToEntity(final PlateDto plateDto){
+    @Autowired
+    AllergenMapper allergenMapper;
+
+
+    public Plate requestDtoToEntity(final PlateDto plateDto) {
         Plate plate = new Plate();
-        if (plateDto.getId() != null){
+        if (plateDto.getId() != null) {
             plate.setId(UUID.fromString(plateDto.getId()));
         }
         plate.setType(plateDto.getType());
@@ -27,23 +38,22 @@ public class PlateMapper {
         plate.setPrice(plateDto.getPrice());
         Category category = categoryService.findCategoryById(UUID.fromString(plateDto.getCategoryId()));
         plate.setCategory(category);
-
-        plate.setAllergens(allergensOptional.get());
+        List<Allergen> allergens = allergenService.findAllergensById(plateDto.getAllergens());
+        plate.setAllergens(allergens);
         return plate;
     }
 
-    public PlateDto entityToDto(final Plate plate){
-        return PlateDto.builder()
+    public ResponsePlateDto entityToDto(final Plate plate) {
+        List<Allergen> allergens = new ArrayList<>();
+        return ResponsePlateDto.builder()
                 .id(plate.getId().toString())
                 .type(plate.getType())
                 .name(plate.getName())
                 .price(plate.getPrice())
+                .categoryId(plate.getCategory().getId().toString())
+                .allergensList(allergenMapper.entityToDto(allergens))
                 .build();
     }
-
-
-
-
 
 
 }

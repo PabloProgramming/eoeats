@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Allergens {
+public class Allergen {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private UUID id;

@@ -31,7 +31,7 @@ public class Plate {
     @ManyToOne
     private Category category;
     @ManyToMany
-    private List<Allergens> allergens;
+    private List<Allergen> allergens;
     @OneToMany(mappedBy = "plate")
     private List<Extras> extras;
     @OneToMany(mappedBy = "plate")
