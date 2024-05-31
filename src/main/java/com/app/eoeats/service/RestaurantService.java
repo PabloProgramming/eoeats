@@ -29,8 +29,8 @@ public class RestaurantService {
     }
 
     @SneakyThrows
-    public Restaurant findRestaurantById(UUID restaurantId) {
-        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(restaurantId);
+    public Restaurant findRestaurantById(String restaurantId) {
+        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(UUID.fromString(restaurantId));
         if (restaurantOptional.isPresent()) {
             return restaurantOptional.get();
         }

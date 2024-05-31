@@ -28,7 +28,7 @@ public class CategoryService {
     }
 
     @SneakyThrows
-    public String deleteCategory(String categoryId) {
+    public String deleteCategory(final String categoryId) {
         final Optional<Category> categoryOptional = categoryRepository.findById(UUID.fromString(categoryId));
         if (categoryOptional.isPresent()) {
             categoryRepository.deleteById(UUID.fromString(categoryId));
@@ -39,8 +39,8 @@ public class CategoryService {
     }
 
     @SneakyThrows
-    public Category findCategoryById(UUID categoryId) {
-        Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+    public Category findCategoryById(final UUID categoryId) {
+        final Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
         if (optionalCategory.isPresent()) {
             return optionalCategory.get();
         }
