@@ -53,6 +53,8 @@ public class PlateMapper {
                 .price(plate.getPrice())
                 .categoryId(plate.getCategory().getId().toString())
                 .allergensList(allergenMapper.entityToDto(plate.getAllergens()))
+                .isAvailable(plate.isAvailable())
+                .isKitchenPrinter(plate.isKitchenPrinter())
                 .build();
     }
 
