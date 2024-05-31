@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Extras {
+public class Extra {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -23,7 +23,7 @@ public class Extras {
     private double price;
     @ManyToOne
     private Plate plate;
-    @OneToMany(mappedBy = "extras")
+    @OneToMany(mappedBy = "extra")
     private List<AmountExtra> amountExtras;
 
 }

@@ -33,7 +33,7 @@ public class Plate {
     @ManyToMany
     private List<Allergen> allergens;
     @OneToMany(mappedBy = "plate")
-    private List<Extras> extras;
+    private List<Extra> extras;
     @OneToMany(mappedBy = "plate")
     private List<Amount> amounts;
 

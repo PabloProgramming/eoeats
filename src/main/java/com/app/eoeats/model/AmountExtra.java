@@ -18,5 +18,5 @@ public class AmountExtra {
     @ManyToOne
     private Amount amount;
     @ManyToOne
-    private Extras extras;
+    private Extra extra;
 }
