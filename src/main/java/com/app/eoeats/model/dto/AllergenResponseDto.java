@@ -7,6 +7,6 @@ import lombok.*;
 @RequiredArgsConstructor
 public class AllergenResponseDto {
 
-    private String id;
-    private String name;
+    private final String id;
+    private final String name;
 }
