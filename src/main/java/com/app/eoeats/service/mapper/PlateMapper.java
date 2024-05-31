@@ -10,7 +10,6 @@ import com.app.eoeats.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,14 +46,13 @@ public class PlateMapper {
     }
 
     public PlateResponseDto entityToDto(final Plate plate) {
-        List<Allergen> allergens = new ArrayList<>();
         return PlateResponseDto.builder()
                 .id(plate.getId().toString())
                 .type(plate.getType())
                 .name(plate.getName())
                 .price(plate.getPrice())
                 .categoryId(plate.getCategory().getId().toString())
-                .allergensList(allergenMapper.entityToDto(allergens))
+                .allergensList(allergenMapper.entityToDto(plate.getAllergens()))
                 .build();
     }
 

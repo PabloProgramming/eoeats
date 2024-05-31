@@ -15,11 +15,11 @@ public class AllergenMapper {
         List<AllergenResponseDto> allergensDto = new ArrayList<>();
         for (Allergen allergen : allergens) {
             if (allergen != null) {
-                AllergenResponseDto.builder()
+                AllergenResponseDto allergenResponseDto = AllergenResponseDto.builder()
                         .id(allergen.getId().toString())
                         .name(allergen.getName())
-                                .build();
-                allergensDto.add(AllergenResponseDto.builder().build());
+                        .build();
+                allergensDto.add(allergenResponseDto);
             } else
                 throw new Exception();
 
