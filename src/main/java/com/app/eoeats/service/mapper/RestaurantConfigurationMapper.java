@@ -11,7 +11,9 @@ public class RestaurantConfigurationMapper {
 
     public RestaurantConfiguration requestToEntity(final RestaurantConfigurationDto restaurantConfigurationDto) {
         RestaurantConfiguration restaurantConfiguration = new RestaurantConfiguration();
-        restaurantConfiguration.setId(UUID.fromString(restaurantConfigurationDto.getId()));
+        if (restaurantConfigurationDto.getId() != null){
+            restaurantConfiguration.setId(UUID.fromString(restaurantConfigurationDto.getId()));
+        }
         restaurantConfiguration.setMailConfirmation(restaurantConfigurationDto.getMailConfirmation());
         restaurantConfiguration.setPrintConfirmation(restaurantConfigurationDto.getPrintConfirmation());
         return restaurantConfiguration;
