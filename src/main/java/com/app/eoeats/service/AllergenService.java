@@ -15,12 +15,16 @@ public class AllergenService {
     @Autowired
     AllergenRepository allergenRepository;
 
-    public List<Allergen> findAllergensById(final List<String> IdsString){
-        List<UUID> IdsUuid = new ArrayList<>();
-        for (String id: IdsString){
+    public List<Allergen> findAllergensById(final List<String> allergenIdStrings){
+        List<UUID> allergenIds = new ArrayList<>();
+        for (String id: allergenIdStrings){
             UUID uuid = UUID.fromString(id);
-            IdsUuid.add(uuid);
+            allergenIds.add(uuid);
         }
-        return allergenRepository.findAllById(IdsUuid);
+        /* FUNCTIONAL PROGRAMMING STREAM METHOD
+        List<UUID> IdsUuid = allergenIdStrings.stream().
+                .map(UUID::fromString)
+                .toList();*/
+        return allergenRepository.findAllById(allergenIds);
     }
 }

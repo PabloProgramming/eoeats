@@ -37,6 +37,14 @@ public class PlateService {
         throw new Exception();
 
     }
+    @SneakyThrows
+    public Plate findPlateById(String plateId){
+        Optional<Plate> optionalPlate = plateRepository.findById(UUID.fromString(plateId));
+        if (optionalPlate.isPresent()){
+            return optionalPlate.get();
+        }
+        throw new Exception();
+    }
 
 
 }

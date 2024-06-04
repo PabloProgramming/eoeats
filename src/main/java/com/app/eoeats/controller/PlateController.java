@@ -21,6 +21,11 @@ public class PlateController {
         return ResponseEntity.ok(plateService.savePlateByCategory(plateDto));
     }
 
+    @PutMapping
+    private ResponseEntity<PlateResponseDto> updatePlate(@RequestBody final PlateDto plateDto){
+        return ResponseEntity.ok(plateService.savePlateByCategory(plateDto));
+    }
+
     @DeleteMapping ("/{plateId}")
     private ResponseEntity<String> deletePlate(@PathVariable final String plateId){
         return ResponseEntity.ok(plateService.deletePlate(plateId));
