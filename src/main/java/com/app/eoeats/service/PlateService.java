@@ -1,6 +1,7 @@
 package com.app.eoeats.service;
 
 import com.app.eoeats.model.Plate;
+import com.app.eoeats.model.dto.PlateAvailabilityDto;
 import com.app.eoeats.model.dto.PlateDto;
 import com.app.eoeats.model.dto.PlateResponseDto;
 import com.app.eoeats.repository.PlateRepository;
@@ -37,6 +38,19 @@ public class PlateService {
         throw new Exception();
 
     }
+    @SneakyThrows
+    public PlateResponseDto updatePlateAvailability (final PlateAvailabilityDto plateAvailabilityDto){
+        Optional<Plate> optionalPlate = plateRepository.findById(UUID.fromString(plateAvailabilityDto.getId()));
+        if (optionalPlate.isPresent()){
+            Plate plate = optionalPlate.get();
+            plate.setAvailable(plateAvailabilityDto.isAvailable());
+            plateRepository.save(plate);
+            return plateMapper.entityToDto(plate);
+        }
+        throw new Exception();
+    }
+
+
     @SneakyThrows
     public Plate findPlateById(String plateId){
         Optional<Plate> optionalPlate = plateRepository.findById(UUID.fromString(plateId));
