@@ -17,9 +17,9 @@ public class CategoryMapper {
     RestaurantService restaurantService;
 
 
-    public Category requestDtoToEntity(final CategoryDto categoryDto){
+    public Category requestDtoToEntity(final CategoryDto categoryDto) {
         Category category = new Category();
-        if(categoryDto.getId() != null){
+        if (categoryDto.getId() != null) {
             category.setId(UUID.fromString(categoryDto.getId()));
         }
         category.setImage(categoryDto.getImage());
@@ -29,7 +29,7 @@ public class CategoryMapper {
         return category;
     }
 
-    public CategoryDto entityToDto(final Category category){
+    public CategoryDto entityToDto(final Category category) {
         return CategoryDto.builder()
                 .id(category.getId().toString())
                 .image(category.getImage())

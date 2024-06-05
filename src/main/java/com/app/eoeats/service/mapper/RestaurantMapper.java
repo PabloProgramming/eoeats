@@ -2,12 +2,17 @@ package com.app.eoeats.service.mapper;
 
 import com.app.eoeats.model.Restaurant;
 import com.app.eoeats.model.dto.RestaurantDto;
+import com.app.eoeats.model.dto.RestaurantResponseDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
 public class RestaurantMapper {
+
+    @Autowired
+    RestaurantCategoriesMapper restaurantCategoriesMapper;
 
     public RestaurantDto entityToResponse(final Restaurant restaurant){
         return RestaurantDto.builder()
@@ -36,6 +41,20 @@ public class RestaurantMapper {
         restaurant.setLatitude(restaurantDto.getLatitude());
         restaurant.setLongitude(restaurantDto.getLongitude());
         return restaurant;
+    }
+
+    public RestaurantResponseDto entityToResponseDto(Restaurant restaurant){
+        return RestaurantResponseDto.builder()
+                .id(restaurant.getId().toString())
+                .email(restaurant.getEmail())
+                .image(restaurant.getImage())
+                .imageId(restaurant.getImageId())
+                .name(restaurant.getName())
+                .phone(restaurant.getPhone())
+                .latitude(restaurant.getLatitude())
+                .longitude(restaurant.getLongitude())
+                .categoryDtoList(restaurantCategoriesMapper.listEntityToListResponseDto(restaurant.getCategories()))
+                .build();
     }
 
 
