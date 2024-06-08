@@ -12,7 +12,7 @@ import java.util.UUID;
 public class RestaurantMapper {
 
     @Autowired
-    RestaurantCategoriesMapper restaurantCategoriesMapper;
+    CategoriesResponseMapper restaurantCategoriesMapper;
 
     public RestaurantDto entityToResponse(final Restaurant restaurant){
         return RestaurantDto.builder()
