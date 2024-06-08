@@ -1,5 +1,6 @@
 package com.app.eoeats.controller;
 
+import com.app.eoeats.model.dto.PlateAvailabilityDto;
 import com.app.eoeats.model.dto.PlateDto;
 import com.app.eoeats.model.dto.PlateResponseDto;
 import com.app.eoeats.service.PlateService;
@@ -25,6 +26,12 @@ public class PlateController {
     private ResponseEntity<PlateResponseDto> updatePlate(@RequestBody final PlateDto plateDto){
         return ResponseEntity.ok(plateService.savePlateByCategory(plateDto));
     }
+
+    @PutMapping ("/{isAvailable}")
+    private ResponseEntity<PlateResponseDto> updatePlateAvailability(@RequestBody final PlateAvailabilityDto plateAvailabilityDto){
+        return ResponseEntity.ok(plateService.updatePlateAvailability(plateAvailabilityDto));
+    }
+
 
     @DeleteMapping ("/{plateId}")
     private ResponseEntity<String> deletePlate(@PathVariable final String plateId){
