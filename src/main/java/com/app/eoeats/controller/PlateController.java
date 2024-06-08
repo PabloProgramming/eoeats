@@ -28,7 +28,7 @@ public class PlateController {
     }
 
     @PutMapping ("/{isAvailable}")
-    private ResponseEntity<PlateResponseDto> updatePlateAvailability(@PathVariable final String isAvailable, @RequestBody final PlateAvailabilityDto plateAvailabilityDto){
+    private ResponseEntity<PlateResponseDto> updatePlateAvailability(@RequestBody final PlateAvailabilityDto plateAvailabilityDto){
         return ResponseEntity.ok(plateService.updatePlateAvailability(plateAvailabilityDto));
     }
 
