@@ -2,6 +2,7 @@ package com.app.eoeats.service;
 
 import com.app.eoeats.model.Restaurant;
 import com.app.eoeats.model.dto.RestaurantDto;
+import com.app.eoeats.model.dto.RestaurantResponseDto;
 import com.app.eoeats.repository.RestaurantRepository;
 import com.app.eoeats.service.mapper.RestaurantMapper;
 import lombok.SneakyThrows;
@@ -35,6 +36,11 @@ public class RestaurantService {
             return restaurantOptional.get();
         }
         throw new Exception();
+    }
+
+    public RestaurantResponseDto getRestaurantInfo(String restaurantId){
+        Restaurant restaurant = findRestaurantById(restaurantId);
+        return restaurantMapper.entityToResponseDto(restaurant);
     }
 
 }
