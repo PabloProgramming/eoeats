@@ -49,7 +49,7 @@ public class CategoryMapper {
                 .id(category.getId().toString())
                 .image(category.getImage())
                 .name(category.getName())
-                .platesByCategory(platesResponseMapper.PlatesToPlatesDto(category.getPlates()))
+                .platesByCategory(platesResponseMapper.platesToPlatesDto(category.getPlates()))
                 .build();
     }
 }
