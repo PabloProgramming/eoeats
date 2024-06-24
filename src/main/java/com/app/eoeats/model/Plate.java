@@ -36,5 +36,4 @@ public class Plate {
     private List<Amount> amounts;
 
 
-
 }
