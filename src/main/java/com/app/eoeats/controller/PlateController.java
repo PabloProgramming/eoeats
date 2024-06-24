@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping ("/plate")
+@RequestMapping("/plate")
 public class PlateController {
 
 
@@ -18,23 +18,23 @@ public class PlateController {
     PlateService plateService;
 
     @PostMapping
-    private ResponseEntity<PlateResponseDto> savePlate(@RequestBody final PlateDto plateDto){
+    private ResponseEntity<PlateResponseDto> savePlate(@RequestBody final PlateDto plateDto) {
         return ResponseEntity.ok(plateService.savePlateByCategory(plateDto));
     }
 
     @PutMapping
-    private ResponseEntity<PlateResponseDto> updatePlate(@RequestBody final PlateDto plateDto){
+    private ResponseEntity<PlateResponseDto> updatePlate(@RequestBody final PlateDto plateDto) {
         return ResponseEntity.ok(plateService.savePlateByCategory(plateDto));
     }
 
-    @PutMapping ("/{isAvailable}")
-    private ResponseEntity<PlateResponseDto> updatePlateAvailability(@RequestBody final PlateAvailabilityDto plateAvailabilityDto){
+    @PutMapping("/{isAvailable}")
+    private ResponseEntity<PlateResponseDto> updatePlateAvailability(@RequestBody final PlateAvailabilityDto plateAvailabilityDto) {
         return ResponseEntity.ok(plateService.updatePlateAvailability(plateAvailabilityDto));
     }
 
 
-    @DeleteMapping ("/{plateId}")
-    private ResponseEntity<String> deletePlate(@PathVariable final String plateId){
+    @DeleteMapping("/{plateId}")
+    private ResponseEntity<String> deletePlate(@PathVariable final String plateId) {
         return ResponseEntity.ok(plateService.deletePlate(plateId));
     }
 

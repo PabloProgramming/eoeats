@@ -18,9 +18,9 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @GetMapping("/{orderId}")
+    @GetMapping("/{restaurantId}")
     private ResponseEntity<List<OrderResponseDto>> getOrderInfo(@PathVariable final String restaurantId) {
-        return ResponseEntity.ok(orderService.getOrderInfo(restaurantId));
+        return ResponseEntity.ok(orderService.getOrderInfoByRestaurantId(restaurantId));
     }
 
 }

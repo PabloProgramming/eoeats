@@ -27,9 +27,9 @@ public class OrderMapper {
     }
 
 
-    public int getAmountOfPlates(final List<Amount> amounts){
+    public int getAmountOfPlates(final List<Amount> amounts) {
         int total = 0;
-        for (Amount amount : amounts){
+        for (Amount amount : amounts) {
             total = total + amount.getAmount();
         }
         return total;
