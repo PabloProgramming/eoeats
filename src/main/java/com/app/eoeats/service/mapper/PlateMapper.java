@@ -5,6 +5,7 @@ import com.app.eoeats.model.Category;
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.PlateDto;
 import com.app.eoeats.model.dto.PlateResponseDto;
+import com.app.eoeats.model.dto.PlateWithExtrasResponseDto;
 import com.app.eoeats.service.AllergenService;
 import com.app.eoeats.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class PlateMapper {
 
     @Autowired
     AllergenMapper allergenMapper;
+
+    @Autowired
+    AllergernsResponseMapper allergernsResponseMapper;
+
+    @Autowired
+    ExtrasResponseMapper extrasResponseMapper;
 
 
     public Plate requestDtoToEntity(final PlateDto plateDto) {
@@ -55,6 +62,19 @@ public class PlateMapper {
                 .allergensList(allergenMapper.entityToDto(plate.getAllergens()))
                 .isAvailable(plate.isAvailable())
                 .isKitchenPrinter(plate.isKitchenPrinter())
+                .build();
+    }
+
+    public PlateWithExtrasResponseDto entityToResponseDto(final Plate plate) {
+        return PlateWithExtrasResponseDto.builder()
+                .id(plate.getId().toString())
+                .type(plate.getType())
+                .name(plate.getName())
+                .price(plate.getPrice())
+                .isAvailable(plate.isAvailable())
+                .isKitchenPrinter(plate.isKitchenPrinter())
+                .allergens(allergernsResponseMapper.entityListToListResponseDto(plate.getAllergens()))
+                .extras(extrasResponseMapper.entityListToResponseDtoList(plate.getExtras()))
                 .build();
     }
 
