@@ -4,6 +4,7 @@ import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.PlateAvailabilityDto;
 import com.app.eoeats.model.dto.PlateDto;
 import com.app.eoeats.model.dto.PlateResponseDto;
+import com.app.eoeats.model.dto.PlateWithExtrasResponseDto;
 import com.app.eoeats.repository.PlateRepository;
 import com.app.eoeats.service.mapper.PlateMapper;
 import lombok.SneakyThrows;
@@ -22,14 +23,14 @@ public class PlateService {
     @Autowired
     PlateMapper plateMapper;
 
-    public PlateResponseDto savePlateByCategory(PlateDto plateDto) {
+    public PlateResponseDto savePlateByCategory(final PlateDto plateDto) {
         final Plate plate = plateMapper.requestDtoToEntity(plateDto);
         final Plate savedPlate = plateRepository.save(plate);
         return plateMapper.entityToDto(savedPlate);
     }
 
     @SneakyThrows
-    public String deletePlate(String plateId) {
+    public String deletePlate(final String plateId) {
         final Optional<Plate> optionalPlate = plateRepository.findById(UUID.fromString(plateId));
         if (optionalPlate.isPresent()) {
             plateRepository.deleteById(UUID.fromString(plateId));
@@ -50,9 +51,14 @@ public class PlateService {
         throw new Exception();
     }
 
+    public PlateWithExtrasResponseDto getPlateInfo(final String plateId){
+        Plate plate = findPlateById(plateId);
+        return plateMapper.entityToResponseDto(plate);
+    }
+
 
     @SneakyThrows
-    public Plate findPlateById(String plateId){
+    public Plate findPlateById(final String plateId){
         Optional<Plate> optionalPlate = plateRepository.findById(UUID.fromString(plateId));
         if (optionalPlate.isPresent()){
             return optionalPlate.get();
