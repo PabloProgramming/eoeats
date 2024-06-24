@@ -3,6 +3,7 @@ package com.app.eoeats.controller;
 import com.app.eoeats.model.dto.PlateAvailabilityDto;
 import com.app.eoeats.model.dto.PlateDto;
 import com.app.eoeats.model.dto.PlateResponseDto;
+import com.app.eoeats.model.dto.PlateWithExtrasResponseDto;
 import com.app.eoeats.service.PlateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,11 @@ public class PlateController {
     @DeleteMapping("/{plateId}")
     private ResponseEntity<String> deletePlate(@PathVariable final String plateId) {
         return ResponseEntity.ok(plateService.deletePlate(plateId));
+    }
+
+    @GetMapping("/{plateId}")
+    private ResponseEntity<PlateWithExtrasResponseDto> getPlateInfo(@PathVariable final String plateId){
+        return ResponseEntity.ok(plateService.getPlateInfo(plateId));
     }
 
 }

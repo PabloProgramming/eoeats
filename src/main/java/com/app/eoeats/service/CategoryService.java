@@ -2,6 +2,7 @@ package com.app.eoeats.service;
 
 import com.app.eoeats.model.Category;
 import com.app.eoeats.model.dto.CategoryDto;
+import com.app.eoeats.model.dto.CategoryPlatesResponseDto;
 import com.app.eoeats.repository.CategoryRepository;
 import com.app.eoeats.service.mapper.CategoryMapper;
 import lombok.SneakyThrows;
@@ -47,7 +48,14 @@ public class CategoryService {
         throw new Exception();
     }
 
+    public CategoryPlatesResponseDto getCategoryWithPlatesInfo(final String categoryId) {
+        Category category = findCategoryById(UUID.fromString(categoryId));
+        return categoryMapper.entityToResponseDto(category);
+
+    }
+
 }
+
 
 
 
