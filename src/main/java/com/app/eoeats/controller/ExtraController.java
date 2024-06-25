@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class ExtraController {
 
     @Autowired
-    ExtraService extraService;
+    private ExtraService extraService;
 
     @PostMapping
     private ResponseEntity<ExtraDto> saveExtra(@RequestBody final ExtraDto extraDto){

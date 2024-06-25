@@ -3,6 +3,7 @@ package com.app.eoeats.service.mapper;
 import com.app.eoeats.model.Restaurant;
 import com.app.eoeats.model.dto.RestaurantDto;
 import com.app.eoeats.model.dto.RestaurantResponseDto;
+import com.app.eoeats.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,11 @@ import java.util.UUID;
 public class RestaurantMapper {
 
     @Autowired
-    CategoriesResponseMapper restaurantCategoriesMapper;
+    private CategoriesResponseMapper restaurantCategoriesMapper;
+
+    @Autowired
+    private Utils utils;
+
 
     public RestaurantDto entityToResponse(final Restaurant restaurant){
         return RestaurantDto.builder()
@@ -31,7 +36,7 @@ public class RestaurantMapper {
     public Restaurant requestToEntity (final RestaurantDto restaurantDto){
         Restaurant restaurant = new Restaurant();
         if (restaurantDto.getId() != null) {
-            restaurant.setId(UUID.fromString(restaurantDto.getId()));
+            restaurant.setId(utils.stringToUuid(restaurantDto.getId()));
         }
         restaurant.setEmail(restaurantDto.getEmail());
         restaurant.setImage(restaurantDto.getImage());

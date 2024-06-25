@@ -9,8 +9,6 @@ import java.util.List;
 
 @Service
 public class PlatesResponseMapper {
-
-
     public List<PlateByCategoryResponseDto> platesToPlatesDto(final List<Plate> plates) {
         List<PlateByCategoryResponseDto> platesResponseDto = new ArrayList<>();
         for (Plate plate : plates) {

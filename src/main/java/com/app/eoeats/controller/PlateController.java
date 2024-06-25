@@ -16,7 +16,7 @@ public class PlateController {
 
 
     @Autowired
-    PlateService plateService;
+    private PlateService plateService;
 
     @PostMapping
     private ResponseEntity<PlateResponseDto> savePlate(@RequestBody final PlateDto plateDto){

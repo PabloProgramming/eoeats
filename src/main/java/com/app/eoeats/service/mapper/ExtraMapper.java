@@ -4,24 +4,25 @@ import com.app.eoeats.model.Extra;
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.ExtraDto;
 import com.app.eoeats.service.PlateService;
+import com.app.eoeats.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class ExtraMapper {
 
 
     @Autowired
-    PlateService plateService;
+    private PlateService plateService;
+
+    @Autowired
+    private Utils utils;
 
     public Extra requestDtoToEntity(final ExtraDto extraDto) {
         Extra extra = new Extra();
         if (extraDto.getId() != null) {
-            extra.setId(UUID.fromString(extraDto.getId()));
+            extra.setId(utils.stringToUuid(extraDto.getId()));
         }
-
         extra.setName(extraDto.getName());
         extra.setPrice(extraDto.getPrice());
         final Plate plate = plateService.findPlateById(extraDto.getPlateId());

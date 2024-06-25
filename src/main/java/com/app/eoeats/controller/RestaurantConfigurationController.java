@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RestaurantConfigurationController {
 
     @Autowired
-    RestaurantConfigurationService restaurantConfigurationService;
+    private RestaurantConfigurationService restaurantConfigurationService;
 
     @PutMapping
     private ResponseEntity<RestaurantConfigurationDto> updateRestaurantConfiguration(@RequestBody RestaurantConfigurationDto restaurantConfigurationDto) {

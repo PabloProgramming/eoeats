@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
 
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
 
     @PostMapping
     private ResponseEntity<CategoryDto> saveCategory(@RequestBody final CategoryDto categoryDto) {
