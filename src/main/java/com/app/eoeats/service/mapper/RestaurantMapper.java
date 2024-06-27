@@ -44,7 +44,7 @@ public class RestaurantMapper {
         return restaurant;
     }
 
-    public RestaurantResponseDto entityToResponseDto(Restaurant restaurant){
+    public RestaurantResponseDto entityToResponseDto(final Restaurant restaurant){
         return RestaurantResponseDto.builder()
                 .id(restaurant.getId().toString())
                 .email(restaurant.getEmail())
