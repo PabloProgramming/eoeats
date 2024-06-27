@@ -11,17 +11,15 @@ import org.springframework.stereotype.Service;
 public class RestaurantConfigurationService {
 
     @Autowired
-    RestaurantConfigurationRepository restaurantConfigurationRepository;
+    private RestaurantConfigurationRepository restaurantConfigurationRepository;
 
     @Autowired
-    RestaurantConfigurationMapper restaurantConfigurationMapper;
+    private RestaurantConfigurationMapper restaurantConfigurationMapper;
 
-    public RestaurantConfigurationDto updateConfiguration(RestaurantConfigurationDto restaurantConfigurationDto){
+    public RestaurantConfigurationDto updateConfiguration(RestaurantConfigurationDto restaurantConfigurationDto) {
         RestaurantConfiguration restaurantConfiguration = restaurantConfigurationMapper.requestToEntity(restaurantConfigurationDto);
         RestaurantConfiguration updatedRestaurantConfiguration = restaurantConfigurationRepository.save(restaurantConfiguration);
         return restaurantConfigurationMapper.entityToResponse(updatedRestaurantConfiguration);
-
-
 
 
     }

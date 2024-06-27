@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class RestaurantController {
 
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
 
     @GetMapping ("/{restaurantId}")
     private ResponseEntity<RestaurantResponseDto> getRestaurantInfo(@PathVariable final String restaurantId){

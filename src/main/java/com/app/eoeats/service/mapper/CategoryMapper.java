@@ -5,26 +5,28 @@ import com.app.eoeats.model.Restaurant;
 import com.app.eoeats.model.dto.CategoryDto;
 import com.app.eoeats.model.dto.CategoryPlatesResponseDto;
 import com.app.eoeats.service.RestaurantService;
+import com.app.eoeats.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class CategoryMapper {
 
 
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
 
     @Autowired
-    PlatesResponseMapper platesResponseMapper;
+    private PlatesResponseMapper platesResponseMapper;
+
+    @Autowired
+    private Utils utils;
 
 
     public Category requestDtoToEntity(final CategoryDto categoryDto) {
         Category category = new Category();
         if (categoryDto.getId() != null) {
-            category.setId(UUID.fromString(categoryDto.getId()));
+            category.setId(utils.stringToUuid(categoryDto.getId()));
         }
         category.setImage(categoryDto.getImage());
         category.setImageId(categoryDto.getImageId());

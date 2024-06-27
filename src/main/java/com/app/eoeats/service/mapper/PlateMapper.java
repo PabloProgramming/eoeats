@@ -8,6 +8,7 @@ import com.app.eoeats.model.dto.PlateResponseDto;
 import com.app.eoeats.model.dto.PlateWithExtrasResponseDto;
 import com.app.eoeats.service.AllergenService;
 import com.app.eoeats.service.CategoryService;
+import com.app.eoeats.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,30 +20,33 @@ public class PlateMapper {
 
 
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
 
     @Autowired
-    AllergenService allergenService;
+    private AllergenService allergenService;
 
     @Autowired
-    AllergenMapper allergenMapper;
+    private AllergenMapper allergenMapper;
 
     @Autowired
-    AllergernsResponseMapper allergernsResponseMapper;
+    private AllergernsResponseMapper allergernsResponseMapper;
 
     @Autowired
-    ExtrasResponseMapper extrasResponseMapper;
+    private ExtrasResponseMapper extrasResponseMapper;
+
+    @Autowired
+    private Utils utils;
 
 
     public Plate requestDtoToEntity(final PlateDto plateDto) {
         Plate plate = new Plate();
         if (plateDto.getId() != null) {
-            plate.setId(UUID.fromString(plateDto.getId()));
+            plate.setId(utils.stringToUuid(plateDto.getId()));
         }
         plate.setType(plateDto.getType());
         plate.setName(plateDto.getName());
         plate.setPrice(plateDto.getPrice());
-        Category category = categoryService.findCategoryById(UUID.fromString(plateDto.getCategoryId()));
+        Category category = categoryService.findCategoryById(plateDto.getCategoryId());
         plate.setCategory(category);
         List<Allergen> allergens = allergenService.findAllergensById(plateDto.getAllergens());
         plate.setAllergens(allergens);

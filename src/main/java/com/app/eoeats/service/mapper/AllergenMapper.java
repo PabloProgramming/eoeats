@@ -25,8 +25,6 @@ public class AllergenMapper {
 
         }
         return allergensDto;
-
     }
-
 
 }
