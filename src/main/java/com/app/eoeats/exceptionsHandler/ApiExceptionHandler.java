@@ -1,6 +1,6 @@
 package com.app.eoeats.exceptionsHandler;
 
-import com.app.eoeats.exceptionsHandler.exceptions.badRequestExceptions.BadRequestException;
+import com.app.eoeats.exceptionsHandler.exceptions.badRequestExceptions.UuidBadRequestException;
 import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.ExtraNotFoundException;
 import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.PlateNotFoundException;
 import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.RestaurantNotFoundException;
@@ -19,7 +19,7 @@ public class ApiExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({BadRequestException.class})
+    @ExceptionHandler({UuidBadRequestException.class})
     @ResponseBody
     public ErrorMessage badRequest(HttpServletRequest request, Exception exception) {
         return new ErrorMessage(exception, request.getRequestURI());

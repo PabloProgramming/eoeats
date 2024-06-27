@@ -1,6 +1,6 @@
 package com.app.eoeats.utils;
 
-import com.app.eoeats.exceptionsHandler.exceptions.badRequestExceptions.BadRequestException;
+import com.app.eoeats.exceptionsHandler.exceptions.badRequestExceptions.UuidBadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -11,7 +11,7 @@ public class Utils {
         try {
             return UUID.fromString(id);
         } catch (Exception e) {
-            throw new BadRequestException(id);
+            throw new UuidBadRequestException(id);
         }
     }
 
