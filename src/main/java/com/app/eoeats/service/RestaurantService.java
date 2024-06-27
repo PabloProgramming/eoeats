@@ -3,6 +3,7 @@ package com.app.eoeats.service;
 import com.app.eoeats.model.Restaurant;
 import com.app.eoeats.model.dto.RestaurantDto;
 import com.app.eoeats.model.dto.RestaurantResponseDto;
+import com.app.eoeats.model.dto.RestaurantResponseDtoClient;
 import com.app.eoeats.repository.RestaurantRepository;
 import com.app.eoeats.service.mapper.RestaurantMapper;
 import lombok.SneakyThrows;
@@ -16,11 +17,10 @@ import java.util.UUID;
 public class RestaurantService {
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
-    RestaurantMapper restaurantMapper;
-
+    private RestaurantMapper restaurantMapper;
 
 
     public RestaurantDto updateRestaurantInfo(final RestaurantDto restaurantDto) {
@@ -30,17 +30,26 @@ public class RestaurantService {
     }
 
     @SneakyThrows
-    public Restaurant findRestaurantById(String restaurantId) {
-        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(UUID.fromString(restaurantId));
+    public Restaurant findRestaurantById(final String restaurantId) {
+        final Optional<Restaurant> restaurantOptional = restaurantRepository.findById(UUID.fromString(restaurantId));
         if (restaurantOptional.isPresent()) {
             return restaurantOptional.get();
         }
         throw new Exception();
     }
 
-    public RestaurantResponseDto getRestaurantInfo(String restaurantId){
-        Restaurant restaurant = findRestaurantById(restaurantId);
+    public RestaurantResponseDto getRestaurantInfo(final String restaurantId) {
+        final Restaurant restaurant = findRestaurantById(restaurantId);
         return restaurantMapper.entityToResponseDto(restaurant);
+    }
+
+    @SneakyThrows
+    public RestaurantResponseDtoClient getRestaurantByName(final String restaurantName) {
+        final Optional<Restaurant> restaurantOptional = restaurantRepository.getRestaurantByName(restaurantName);
+        if (restaurantOptional.isPresent()) {
+            return restaurantMapper.entityToResponseDtoClient(restaurantOptional.get());
+        }
+        throw new Exception();
     }
 
 }

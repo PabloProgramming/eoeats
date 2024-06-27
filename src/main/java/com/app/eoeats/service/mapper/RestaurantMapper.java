@@ -3,6 +3,7 @@ package com.app.eoeats.service.mapper;
 import com.app.eoeats.model.Restaurant;
 import com.app.eoeats.model.dto.RestaurantDto;
 import com.app.eoeats.model.dto.RestaurantResponseDto;
+import com.app.eoeats.model.dto.RestaurantResponseDtoClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 public class RestaurantMapper {
 
     @Autowired
-    CategoriesResponseMapper restaurantCategoriesMapper;
+    private CategoriesResponseMapper restaurantCategoriesMapper;
 
     public RestaurantDto entityToResponse(final Restaurant restaurant){
         return RestaurantDto.builder()
@@ -55,6 +56,16 @@ public class RestaurantMapper {
                 .longitude(restaurant.getLongitude())
                 .categoryDtoList(restaurantCategoriesMapper.listEntityToListResponseDto(restaurant.getCategories()))
                 .build();
+    }
+
+    public RestaurantResponseDtoClient entityToResponseDtoClient(final Restaurant restaurant) {
+        return RestaurantResponseDtoClient.builder()
+                .id(restaurant.getId().toString())
+                .name(restaurant.getName())
+                .categoryDtoList(restaurantCategoriesMapper.listEntityToListResponseDto(restaurant.getCategories()))
+                .build();
+
+
     }
 
 
