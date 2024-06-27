@@ -2,6 +2,7 @@ package com.app.eoeats.controller;
 
 import com.app.eoeats.model.dto.RestaurantDto;
 import com.app.eoeats.model.dto.RestaurantResponseDto;
+import com.app.eoeats.model.dto.RestaurantResponseDtoClient;
 import com.app.eoeats.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +24,10 @@ public class RestaurantController {
     @PutMapping
     private ResponseEntity<RestaurantDto> updateRestaurantInfo(@RequestBody final RestaurantDto restaurantDto) {
         return ResponseEntity.ok(restaurantService.updateRestaurantInfo(restaurantDto));
+    }
+
+    @GetMapping("/qr/{restaurantName}")
+    private ResponseEntity<RestaurantResponseDtoClient> getRestaurantByName(@PathVariable String restaurantName) {
+        return ResponseEntity.ok(restaurantService.getRestaurantByName(restaurantName));
     }
 }
