@@ -17,9 +17,6 @@ public class RestaurantMapper {
     @Autowired
     private Utils utils;
 
-    @Autowired
-    private RestaurantResponseDtoClient restaurantResponseDtoClient;
-
     public RestaurantDto entityToResponse(final Restaurant restaurant) {
         return RestaurantDto.builder()
                 .id(restaurant.getId().toString())

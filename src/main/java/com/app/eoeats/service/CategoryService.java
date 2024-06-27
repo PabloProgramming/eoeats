@@ -54,7 +54,7 @@ public class CategoryService {
     }
 
     public CategoryPlatesResponseDto getCategoryWithPlatesInfo(final String categoryId) {
-        Category category = findCategoryById(categoryId);
+        final Category category = findCategoryById(categoryId);
         return categoryMapper.entityToResponseDto(category);
 
     }

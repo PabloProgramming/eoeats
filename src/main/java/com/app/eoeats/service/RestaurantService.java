@@ -43,7 +43,7 @@ public class RestaurantService {
     }
 
     public RestaurantResponseDto getRestaurantInfo(final String restaurantId) {
-        Restaurant restaurant = findRestaurantById(restaurantId);
+        final Restaurant restaurant = findRestaurantById(restaurantId);
         return restaurantMapper.entityToResponseDto(restaurant);
     }
 
@@ -53,7 +53,7 @@ public class RestaurantService {
         if (restaurantOptional.isPresent()) {
             return restaurantMapper.entityToResponseDtoClient(restaurantOptional.get());
         }
-        throw new Exception();
+        throw new RestaurantNotFoundException(restaurantName);
     }
 
 }
