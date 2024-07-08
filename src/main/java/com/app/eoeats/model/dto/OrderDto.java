@@ -11,7 +11,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderDto {
 
-    private final String id;
     private final String date;
     private final int tableNumber;
     private final double totalPrice;

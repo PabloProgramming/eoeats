@@ -28,10 +28,10 @@ public class OrderService {
         return orderMapper.listEntityToListResponseDto(orders);
     }
 
-    public OrderResponseDto saveOrder(final OrderDto orderDto) {
+    public Boolean saveOrder(final OrderDto orderDto) {
         final Order order = orderMapper.requestDtoToEntity(orderDto);
-        final Order savedOrder = orderRepository.save(order);
-        return orderMapper.entityToResponseDto(savedOrder);
+        orderRepository.save(order);
+        return true;
     }
 
 }

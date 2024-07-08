@@ -23,7 +23,7 @@ public class OrderController {
     }
 
     @PostMapping
-    private ResponseEntity<OrderResponseDto> saveOrder(@RequestBody final OrderDto orderDto) {
+    private ResponseEntity<Boolean> saveOrder(@RequestBody final OrderDto orderDto) {
         return ResponseEntity.ok(orderService.saveOrder(orderDto));
     }
 

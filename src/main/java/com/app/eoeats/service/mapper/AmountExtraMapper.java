@@ -21,7 +21,7 @@ public class AmountExtraMapper {
     private ExtraService extraService;
 
 
-    public List<AmountExtra> listDtoToEntity(final List<AmountExtraDto> amountExtraDtos) {
+    public List<AmountExtra> dtosToEntities(final List<AmountExtraDto> amountExtraDtos) {
         List<AmountExtra> amountExtras = new ArrayList<>();
         for (AmountExtraDto amountExtraDto : amountExtraDtos) {
             AmountExtra amountExtra = new AmountExtra();

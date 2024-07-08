@@ -34,7 +34,7 @@ public class AmountMapper {
             amount.setType(amountDto.getType());
             final Plate plate = plateService.findPlateById(amountDto.getPlateId());
             amount.setPlate(plate);
-            amount.setAmountExtras(amountExtraMapper.listDtoToEntity(amountDto.getAmountExtraDtos()));
+            amount.setAmountExtras(amountExtraMapper.dtosToEntities(amountDto.getAmountExtraDtos()));
             amounts.add(amount);
         }
         return amounts;

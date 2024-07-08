@@ -13,6 +13,5 @@ public class OrderResponseDto {
     private final String date;
     private final boolean isPrinted;
     private final int tableNumber;
-    private final double totalPrice;
     private final int amountOfPlates;
 }

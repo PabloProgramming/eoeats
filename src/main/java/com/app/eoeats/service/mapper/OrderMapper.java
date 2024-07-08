@@ -51,9 +51,6 @@ public class OrderMapper {
 
     public Order requestDtoToEntity(final OrderDto orderDto) {
         Order order = new Order();
-        if (orderDto.getId() != null) {
-            order.setId(utils.stringToUuid(orderDto.getId()));
-        }
         order.setDate(orderDto.getDate());
         order.setTableNumber(orderDto.getTableNumber());
         order.setTotalPrice(orderDto.getTotalPrice());
@@ -61,17 +58,6 @@ public class OrderMapper {
         order.setRestaurant(restaurant);
         order.setAmounts(amountMapper.listDtoToEntity(orderDto.getAmountDtos()));
         return order;
-    }
-
-    public OrderResponseDto entityToResponseDto(final Order order) {
-        return OrderResponseDto.builder()
-                .id(order.getId().toString())
-                .date(order.getDate())
-                .isPrinted(order.isPrinted())
-                .tableNumber(order.getTableNumber())
-                .totalPrice(order.getTotalPrice())
-                .amountOfPlates(getAmountOfPlates(order.getAmounts()))
-                .build();
     }
 
 }
