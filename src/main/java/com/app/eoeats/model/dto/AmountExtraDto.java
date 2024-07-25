@@ -1,14 +1,12 @@
 package com.app.eoeats.model.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Builder
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class AmountExtraDto {
 
-    private final String id;
-    private final String extraId;
+    private String extraId;
 }

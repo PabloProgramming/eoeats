@@ -56,7 +56,11 @@ public class OrderMapper {
         order.setTotalPrice(orderDto.getTotalPrice());
         final Restaurant restaurant = restaurantService.findRestaurantById(orderDto.getRestaurantId());
         order.setRestaurant(restaurant);
-        order.setAmounts(amountMapper.listDtoToEntity(orderDto.getAmountDtos()));
+        List<Amount> amounts = amountMapper.listDtoToEntity(orderDto.getAmountDtos());
+        for (Amount amount: amounts) {
+            amount.setOrder(order);
+        }
+        order.setAmounts(amounts);
         return order;
     }
 

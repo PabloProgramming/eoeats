@@ -26,7 +26,7 @@ public class Order {
     private int tableNumber;
     @NonNull
     private double totalPrice;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<Amount> amounts;
     @ManyToOne
     @JoinColumn(name = "restaurantId")

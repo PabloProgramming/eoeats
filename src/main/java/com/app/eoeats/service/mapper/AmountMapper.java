@@ -1,6 +1,7 @@
 package com.app.eoeats.service.mapper;
 
 import com.app.eoeats.model.Amount;
+import com.app.eoeats.model.AmountExtra;
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.AmountDto;
 import com.app.eoeats.service.PlateService;
@@ -34,7 +35,12 @@ public class AmountMapper {
             amount.setType(amountDto.getType());
             final Plate plate = plateService.findPlateById(amountDto.getPlateId());
             amount.setPlate(plate);
-            amount.setAmountExtras(amountExtraMapper.dtosToEntities(amountDto.getAmountExtraDtos()));
+            List<AmountExtra> amountExtras = amountExtraMapper.dtosToEntities(amountDto.getAmountExtraDtos());
+            for (AmountExtra amountExtra : amountExtras) {
+                amountExtra.setAmount(amount);
+            }
+            amount.setAmountExtras(amountExtras);
+
             amounts.add(amount);
         }
         return amounts;
