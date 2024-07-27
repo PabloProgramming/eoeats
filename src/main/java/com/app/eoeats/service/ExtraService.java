@@ -42,6 +42,14 @@ public class ExtraService {
         throw new ExtraNotFoundException(extraId);
     }
 
+    public Extra findExtraById(final String extraId) {
+        final Optional<Extra> optionalExtra = extraRepository.findById(utils.stringToUuid(extraId));
+        if (optionalExtra.isPresent()) {
+            return optionalExtra.get();
+        }
+        throw new ExtraNotFoundException(extraId);
+    }
+
 }
 
 
