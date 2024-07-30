@@ -26,5 +26,4 @@ public class OrderController {
     private ResponseEntity<Boolean> saveOrder(@RequestBody final OrderDto orderDto) {
         return ResponseEntity.ok(orderService.saveOrder(orderDto));
     }
-
 }

@@ -1,6 +1,7 @@
 package com.app.eoeats.service.mapper;
 
 import com.app.eoeats.model.Extra;
+import com.app.eoeats.model.dto.ExtraByOrderDto;
 import com.app.eoeats.model.dto.ExtraResponseDto;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,16 @@ public class ExtrasResponseMapper {
             extrasResponseDtos.add(extraResponseDto);
         }
         return extrasResponseDtos;
+    }
+
+    List<ExtraByOrderDto> ExtrasToDtos(final List<Extra> extras) {
+        List<ExtraByOrderDto> extraByOrderDtos = new ArrayList<>();
+        for (Extra extra : extras) {
+            ExtraByOrderDto extraByOrderDto = ExtraByOrderDto.builder()
+                    .name(extra.getName())
+                    .build();
+            extraByOrderDtos.add(extraByOrderDto);
+        }
+        return extraByOrderDtos;
     }
 }
