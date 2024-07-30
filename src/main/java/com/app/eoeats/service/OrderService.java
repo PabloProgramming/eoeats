@@ -23,6 +23,10 @@ public class OrderService {
     @Autowired
     private Utils utils;
 
+    @Autowired
+    private AmountService amountService;
+
+
     public List<OrderResponseDto> getOrderInfoByRestaurantId(final String restaurantId) {
         final List<Order> orders = orderRepository.getOrdersByRestaurantId(utils.stringToUuid(restaurantId));
         return orderMapper.listEntityToListResponseDto(orders);
@@ -32,6 +36,18 @@ public class OrderService {
         final Order order = orderMapper.requestDtoToEntity(orderDto);
         orderRepository.save(order);
         return true;
+    }
+
+    public List<String> deleteOrderByTableNumber(final int tableNumber) {
+        List<Order> orders = orderRepository.getOrderByTableNumber(tableNumber);
+        List<String> orderIds = new ArrayList<>();
+        for (Order order : orders) {
+            String orderId = order.getId().toString();
+            orderIds.add(orderId);
+            amountService.deleteAmountsByOrderId(orderId);
+            orderRepository.delete(order);
+        }
+        return orderIds;
     }
 
 }
