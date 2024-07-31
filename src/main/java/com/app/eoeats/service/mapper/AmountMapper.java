@@ -26,7 +26,7 @@ public class AmountMapper {
     private AmountExtraMapper amountExtraMapper;
 
     @Autowired
-    ExtrasResponseMapper extrasResponseMapper;
+    private ExtrasResponseMapper extrasResponseMapper;
 
 
     public List<Amount> listDtoToEntity(final List<AmountDto> amountDtos) {

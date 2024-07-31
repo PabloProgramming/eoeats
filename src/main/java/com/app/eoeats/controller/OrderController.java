@@ -27,6 +27,11 @@ public class OrderController {
         return ResponseEntity.ok(orderService.saveOrder(orderDto));
     }
 
+    @DeleteMapping("/{orderId}")
+    private ResponseEntity<String> deleteOrder(@PathVariable final String orderId) {
+        return ResponseEntity.ok((orderService.deleteOrder(orderId)));
+    }
+
     @DeleteMapping("/{tableNumber}")
     private ResponseEntity<List<String>> deleteOrderByTableNumber(@PathVariable final int tableNumber) {
         return ResponseEntity.ok(orderService.deleteOrderByTableNumber(tableNumber));
