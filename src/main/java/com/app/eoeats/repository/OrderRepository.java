@@ -10,5 +10,7 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
 
     List<Order> getOrdersByRestaurantId(UUID restaurantId);
 
+    List<Order> getOrderByTableNumber(int tableNumber);
+
 
 }

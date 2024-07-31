@@ -25,7 +25,7 @@ public class Amount {
     private double subTotalPrice;
     @NonNull
     private int type;
-    @OneToMany(mappedBy = "amount", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "amount", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AmountExtra> amountExtras;
     @ManyToOne
     private Plate plate;

@@ -64,5 +64,4 @@ public class AmountMapper {
         return amountOfPlatesAndExtrasDtos;
     }
 
-
 }
