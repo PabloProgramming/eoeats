@@ -33,20 +33,11 @@ public class OrderMapper {
                     .date(order.getDate())
                     .isPrinted(order.isPrinted())
                     .tableNumber(order.getTableNumber())
-                    .amountOfPlates(getAmountOfPlates(order.getAmounts()))
+                    .amountOfPlates(utils.getAmountOfPlates(order.getAmounts()))
                     .build();
             orderResponseDtoList.add(orderResponseDto);
         }
         return orderResponseDtoList;
-    }
-
-
-    public int getAmountOfPlates(final List<Amount> amounts) {
-        int total = 0;
-        for (Amount amount : amounts) {
-            total = total + amount.getAmount();
-        }
-        return total;
     }
 
     public Order requestDtoToEntity(final OrderDto orderDto) {
@@ -57,7 +48,7 @@ public class OrderMapper {
         final Restaurant restaurant = restaurantService.findRestaurantById(orderDto.getRestaurantId());
         order.setRestaurant(restaurant);
         List<Amount> amounts = amountMapper.listDtoToEntity(orderDto.getAmountDtos());
-        for (Amount amount: amounts) {
+        for (Amount amount : amounts) {
             amount.setOrder(order);
         }
         order.setAmounts(amounts);

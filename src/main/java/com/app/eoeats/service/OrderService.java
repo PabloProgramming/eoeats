@@ -11,6 +11,7 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,6 +27,10 @@ public class OrderService {
 
     @Autowired
     private Utils utils;
+
+    @Autowired
+    private AmountService amountService;
+
 
     public List<OrderResponseDto> getOrderInfoByRestaurantId(final String restaurantId) {
         final List<Order> orders = orderRepository.getOrdersByRestaurantId(utils.stringToUuid(restaurantId));
@@ -45,6 +50,18 @@ public class OrderService {
             return orderId;
         }
         throw new OrderNotFoundException(orderId);
+    }
+
+    public List<String> deleteOrderByTableNumber(final int tableNumber) {
+        List<Order> orders = orderRepository.getOrderByTableNumber(tableNumber);
+        List<String> orderIds = new ArrayList<>();
+        for (Order order : orders) {
+            String orderId = order.getId().toString();
+            orderIds.add(orderId);
+            amountService.deleteAmountsByOrderId(orderId);
+            orderRepository.delete(order);
+        }
+        return orderIds;
     }
 
 }
