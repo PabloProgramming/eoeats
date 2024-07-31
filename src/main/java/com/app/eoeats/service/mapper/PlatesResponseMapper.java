@@ -9,8 +9,9 @@ import java.util.List;
 
 @Service
 public class PlatesResponseMapper {
+
     public List<PlateByCategoryResponseDto> platesToPlatesDto(final List<Plate> plates) {
-        List<PlateByCategoryResponseDto> platesResponseDto = new ArrayList<>();
+        List<PlateByCategoryResponseDto> platesResponseDtos = new ArrayList<>();
         for (Plate plate : plates) {
             PlateByCategoryResponseDto plateResponseDto = PlateByCategoryResponseDto.builder()
                     .id(plate.getId().toString())
@@ -18,8 +19,8 @@ public class PlatesResponseMapper {
                     .name(plate.getName())
                     .isAvailable(plate.isAvailable())
                     .build();
-            platesResponseDto.add(plateResponseDto);
+            platesResponseDtos.add(plateResponseDto);
         }
-        return platesResponseDto;
+        return platesResponseDtos;
     }
 }
