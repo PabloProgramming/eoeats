@@ -4,6 +4,7 @@ import com.app.eoeats.model.Amount;
 import com.app.eoeats.model.AmountExtra;
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.AmountDto;
+import com.app.eoeats.model.dto.AmountOfPlatesAndExtrasDto;
 import com.app.eoeats.service.PlateService;
 import com.app.eoeats.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AmountMapper {
 
     @Autowired
     private AmountExtraMapper amountExtraMapper;
+
+    @Autowired
+    ExtrasResponseMapper extrasResponseMapper;
 
 
     public List<Amount> listDtoToEntity(final List<AmountDto> amountDtos) {
@@ -46,5 +50,18 @@ public class AmountMapper {
         return amounts;
     }
 
+    public List<AmountOfPlatesAndExtrasDto> listEntityToListDto(final List<Amount> amounts) {
+        List<AmountOfPlatesAndExtrasDto> amountOfPlatesAndExtrasDtos = new ArrayList<>();
+        for (Amount amount : amounts) {
+            AmountOfPlatesAndExtrasDto amountOfPlatesAndExtrasDto = AmountOfPlatesAndExtrasDto.builder()
+                    .amountOfPlate(amount.getAmount())
+                    .description(amount.getDescription())
+                    .name(amount.getPlate().getName())
+                    .extraByOrderDtos(extrasResponseMapper.ExtrasToDtos(amount.getPlate().getExtras()))
+                    .build();
+            amountOfPlatesAndExtrasDtos.add(amountOfPlatesAndExtrasDto);
+        }
+        return amountOfPlatesAndExtrasDtos;
+    }
 
 }
