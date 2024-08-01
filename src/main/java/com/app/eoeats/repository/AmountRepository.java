@@ -9,6 +9,5 @@ import java.util.UUID;
 public interface AmountRepository extends JpaRepository<Amount, UUID> {
 
     List<Amount> getAmountsByOrderId(UUID orderId);
-
-
+    List<Amount> getAmountsByOrderTableNumber(int tableNumber);
 }

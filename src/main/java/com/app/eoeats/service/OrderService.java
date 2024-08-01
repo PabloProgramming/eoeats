@@ -4,6 +4,7 @@ import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.OrderNotFo
 import com.app.eoeats.model.Order;
 import com.app.eoeats.model.dto.OrderDto;
 import com.app.eoeats.model.dto.OrderResponseDto;
+import com.app.eoeats.model.dto.OrderTableNumberResponseDto;
 import com.app.eoeats.repository.OrderRepository;
 import com.app.eoeats.service.mapper.OrderMapper;
 import com.app.eoeats.utils.Utils;
@@ -42,6 +43,7 @@ public class OrderService {
         orderRepository.save(order);
         return true;
     }
+
     @SneakyThrows
     public String deleteOrder(final String orderId) {
         final Optional<Order> optionalOrder = orderRepository.findById(utils.stringToUuid(orderId));
@@ -62,6 +64,17 @@ public class OrderService {
             orderRepository.delete(order);
         }
         return orderIds;
+    }
+
+    public OrderTableNumberResponseDto getTableNumberOrders(final int tableNumber) {
+        final List<Order> orders = orderRepository.getOrderByTableNumber(tableNumber);
+        for (Order order : orders) {
+            return OrderTableNumberResponseDto.builder()
+                    .tableNumber(order.getTableNumber())
+                    .orderInfoResponseDtos(orderMapper.getOrderInfoByTableNumber(tableNumber))
+                    .build();
+        }
+        return OrderTableNumberResponseDto.builder().build();
     }
 
 }

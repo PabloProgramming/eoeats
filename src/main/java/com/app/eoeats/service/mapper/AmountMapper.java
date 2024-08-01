@@ -3,6 +3,7 @@ package com.app.eoeats.service.mapper;
 import com.app.eoeats.model.Amount;
 import com.app.eoeats.model.AmountExtra;
 import com.app.eoeats.model.Plate;
+import com.app.eoeats.model.dto.AmountAndExtraResponseDto;
 import com.app.eoeats.model.dto.AmountDto;
 import com.app.eoeats.model.dto.AmountOfPlatesAndExtrasDto;
 import com.app.eoeats.service.PlateService;
@@ -62,6 +63,20 @@ public class AmountMapper {
             amountOfPlatesAndExtrasDtos.add(amountOfPlatesAndExtrasDto);
         }
         return amountOfPlatesAndExtrasDtos;
+    }
+
+    public List<AmountAndExtraResponseDto> listEntityToListResponseDto(final List<Amount> amounts) {
+        List<AmountAndExtraResponseDto> amountAndExtraResponseDtos = new ArrayList<>();
+        for (Amount amount : amounts) {
+            AmountAndExtraResponseDto amountAndExtraResponseDto = AmountAndExtraResponseDto.builder()
+                    .amountOfPlate(amount.getAmount())
+                    .name(amount.getPlate().getName())
+                    .platePrice(amount.getSubTotalPrice())
+                    .extraByAmountResponseDtos(amountExtraMapper.EntitiesExtrasToDtos(amount.getAmountExtras()))
+                    .build();
+            amountAndExtraResponseDtos.add(amountAndExtraResponseDto);
+        }
+        return amountAndExtraResponseDtos;
     }
 
 }
