@@ -2,6 +2,7 @@ package com.app.eoeats.controller;
 
 import com.app.eoeats.model.dto.OrderDto;
 import com.app.eoeats.model.dto.OrderResponseDto;
+import com.app.eoeats.model.dto.OrderTableNumberResponseDto;
 import com.app.eoeats.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @GetMapping("/{restaurantId}")
     private ResponseEntity<List<OrderResponseDto>> getOrderInfo(@PathVariable final String restaurantId) {
@@ -35,6 +36,11 @@ public class OrderController {
     @DeleteMapping("/{tableNumber}")
     private ResponseEntity<List<String>> deleteOrderByTableNumber(@PathVariable final int tableNumber) {
         return ResponseEntity.ok(orderService.deleteOrderByTableNumber(tableNumber));
+    }
+
+    @GetMapping("/orderInfo/{tableNumber}")
+    private ResponseEntity<OrderTableNumberResponseDto> getOrderInfoByTableNumber(@PathVariable final int tableNumber) {
+        return ResponseEntity.ok(orderService.getTableNumberOrders(tableNumber));
     }
 
 }

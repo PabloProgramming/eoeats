@@ -3,6 +3,7 @@ package com.app.eoeats.service.mapper;
 import com.app.eoeats.model.AmountExtra;
 import com.app.eoeats.model.Extra;
 import com.app.eoeats.model.dto.AmountExtraDto;
+import com.app.eoeats.model.dto.ExtraByAmountResponseDto;
 import com.app.eoeats.service.ExtraService;
 import com.app.eoeats.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,18 @@ public class AmountExtraMapper {
         return amountExtras;
     }
 
+    public List<ExtraByAmountResponseDto> EntitiesExtrasToDtos(final List<AmountExtra> amountExtras) {
+        List<ExtraByAmountResponseDto> extraByAmountResponseDtos = new ArrayList<>();
+        for (AmountExtra amountExtra : amountExtras) {
+            ExtraByAmountResponseDto extraByAmountResponseDto = ExtraByAmountResponseDto.builder()
+                    .name(amountExtra.getExtra().getName())
+                    .extraPrice(amountExtra.getExtra().getPrice())
+                    .build();
+            extraByAmountResponseDtos.add(extraByAmountResponseDto);
+
+        }
+        return extraByAmountResponseDtos;
+
+    }
 
 }
