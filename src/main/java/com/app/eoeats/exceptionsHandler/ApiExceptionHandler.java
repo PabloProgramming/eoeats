@@ -1,10 +1,7 @@
 package com.app.eoeats.exceptionsHandler;
 
 import com.app.eoeats.exceptionsHandler.exceptions.badRequestExceptions.UuidBadRequestException;
-import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.ExtraNotFoundException;
-import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.OrderNotFoundException;
-import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.PlateNotFoundException;
-import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.RestaurantNotFoundException;
+import com.app.eoeats.exceptionsHandler.exceptions.notFoundExceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class ApiExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler({PlateNotFoundException.class, RestaurantNotFoundException.class, ExtraNotFoundException.class, OrderNotFoundException.class})
+    @ExceptionHandler({PlateNotFoundException.class, RestaurantNotFoundException.class, ExtraNotFoundException.class, OrderNotFoundException.class, AmountNotFoundException.class, AmountExtraNotFoundException.class})
     @ResponseBody
     public ErrorMessage notFoundRequest(HttpServletRequest request, Exception exception) {
         return new ErrorMessage(exception, request.getRequestURI());
