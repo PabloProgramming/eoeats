@@ -1,3 +1,5 @@
+# EOeats
+
 This API provides a robust platform for restaurants to manage their menus and orders efficiently, while offering a seamless user experience for customers.
 
 Key Features:
