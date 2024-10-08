@@ -19,6 +19,8 @@ public class Plate {
     private int type;
     @NonNull
     private String name;
+    @NonNull
+    private String image;
     private String description;
     @NonNull
     private double price;
@@ -34,6 +36,4 @@ public class Plate {
     private List<Extra> extras;
     @OneToMany(mappedBy = "plate")
     private List<Amount> amounts;
-
-
 }

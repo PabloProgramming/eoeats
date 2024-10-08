@@ -5,6 +5,7 @@ import com.app.eoeats.service.AmountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +22,10 @@ public class AmountController {
     @GetMapping("/{orderId}")
     private ResponseEntity<List<AmountOfPlatesAndExtrasDto>> getOrderPlatesAndExtras(@PathVariable final String orderId) {
         return ResponseEntity.ok(amountService.getPlatesAndExtrasByOrder(orderId));
+    }
+
+    @DeleteMapping("/{amountId}")
+    private ResponseEntity<String> deletePlateFromOrder(@PathVariable final String amountId) {
+        return ResponseEntity.ok(amountService.deleteAmountFromOrder(amountId));
     }
 }

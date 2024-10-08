@@ -12,6 +12,7 @@ public class PlateByCategoryResponseDto {
     private final String id;
     private final int type;
     private final String name;
+    private final String image;
     private final boolean isAvailable;
 
 }
