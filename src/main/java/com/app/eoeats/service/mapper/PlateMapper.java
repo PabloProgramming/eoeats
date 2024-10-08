@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class PlateMapper {
@@ -44,6 +43,7 @@ public class PlateMapper {
             plate.setId(utils.stringToUuid(plateDto.getId()));
         }
         plate.setType(plateDto.getType());
+        plate.setImage(plateDto.getImage());
         plate.setName(plateDto.getName());
         plate.setPrice(plateDto.getPrice());
         Category category = categoryService.findCategoryById(plateDto.getCategoryId());
@@ -74,6 +74,7 @@ public class PlateMapper {
                 .id(plate.getId().toString())
                 .type(plate.getType())
                 .name(plate.getName())
+                .image(plate.getImage())
                 .price(plate.getPrice())
                 .isAvailable(plate.isAvailable())
                 .isKitchenPrinter(plate.isKitchenPrinter())

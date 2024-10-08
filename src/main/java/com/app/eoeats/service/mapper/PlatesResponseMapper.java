@@ -17,6 +17,7 @@ public class PlatesResponseMapper {
                     .id(plate.getId().toString())
                     .type(plate.getType())
                     .name(plate.getName())
+                    .image(plate.getImage())
                     .isAvailable(plate.isAvailable())
                     .build();
             platesResponseDtos.add(plateResponseDto);
