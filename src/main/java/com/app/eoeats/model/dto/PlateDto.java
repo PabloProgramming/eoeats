@@ -20,5 +20,4 @@ public class PlateDto {
     private final List<String> allergens;
     private final boolean isAvailable;
     private final boolean isKitchenPrinter;
-
 }
