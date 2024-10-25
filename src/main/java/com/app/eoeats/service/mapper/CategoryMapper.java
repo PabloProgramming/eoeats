@@ -29,7 +29,6 @@ public class CategoryMapper {
             category.setId(utils.stringToUuid(categoryDto.getId()));
         }
         category.setImage(categoryDto.getImage());
-        category.setImageId(categoryDto.getImageId());
         category.setName(categoryDto.getName());
         final Restaurant restaurant = restaurantService.findRestaurantById(categoryDto.getRestaurantId());
         category.setRestaurant(restaurant);
@@ -40,7 +39,6 @@ public class CategoryMapper {
         return CategoryDto.builder()
                 .id(category.getId().toString())
                 .image(category.getImage())
-                .imageId(category.getImageId())
                 .name(category.getName())
                 .restaurantId(category.getRestaurant().getId().toString())
                 .build();
