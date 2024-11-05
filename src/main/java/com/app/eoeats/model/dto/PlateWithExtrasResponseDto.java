@@ -16,6 +16,7 @@ public class PlateWithExtrasResponseDto {
     private final String name;
     private final double price;
     private final String image;
+    private final String description;
     private final List<AllergenResponseDto> allergens;
     private final List<ExtraResponseDto> extras;
     private final boolean isAvailable;
