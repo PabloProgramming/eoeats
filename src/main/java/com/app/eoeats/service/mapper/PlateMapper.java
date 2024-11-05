@@ -1,6 +1,5 @@
 package com.app.eoeats.service.mapper;
 
-import com.app.eoeats.model.Allergen;
 import com.app.eoeats.model.Category;
 import com.app.eoeats.model.Plate;
 import com.app.eoeats.model.dto.PlateDto;
@@ -11,8 +10,6 @@ import com.app.eoeats.service.CategoryService;
 import com.app.eoeats.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PlateMapper {
@@ -48,8 +45,9 @@ public class PlateMapper {
         plate.setPrice(plateDto.getPrice());
         Category category = categoryService.findCategoryById(plateDto.getCategoryId());
         plate.setCategory(category);
-        List<Allergen> allergens = allergenService.findAllergensById(plateDto.getAllergens());
-        plate.setAllergens(allergens);
+        plate.setDescription(plateDto.getDescription());
+        //List<Allergen> allergens = allergenService.findAllergensById(plateDto.getAllergens());
+        //plate.setAllergens(allergens);
         plate.setAvailable(plateDto.isAvailable());
         plate.setKitchenPrinter(plateDto.isKitchenPrinter());
 
@@ -63,9 +61,10 @@ public class PlateMapper {
                 .name(plate.getName())
                 .price(plate.getPrice())
                 .categoryId(plate.getCategory().getId().toString())
-                .allergensList(allergenMapper.entityToDto(plate.getAllergens()))
+                //.allergensList(allergenMapper.entityToDto(plate.getAllergens()))
                 .isAvailable(plate.isAvailable())
                 .isKitchenPrinter(plate.isKitchenPrinter())
+                .description(plate.getDescription())
                 .build();
     }
 
@@ -78,6 +77,7 @@ public class PlateMapper {
                 .price(plate.getPrice())
                 .isAvailable(plate.isAvailable())
                 .isKitchenPrinter(plate.isKitchenPrinter())
+                .description(plate.getDescription())
                 .allergens(allergernsResponseMapper.entityListToListResponseDto(plate.getAllergens()))
                 .extras(extrasResponseMapper.entityListToResponseDtoList(plate.getExtras()))
                 .build();
